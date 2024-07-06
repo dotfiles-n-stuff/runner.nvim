@@ -28,24 +28,15 @@ end
 
 function M.launch()
   cmd = config.cmds[vim.bo.filetype]
-
-  if not cmd then
-    vim.cmd("echohl ErrorMsg | echo 'Error: Invalid command' | echohl None")
-    return
-  end
-
-  if config.behavior.autosave then vim.cmd("silent write") end
-
-  cmd = substitute(cmd)
-
-  vim.cmd(":tabnew | setlocal buftype=nofile bufhidden=wipe nobuflisted filetype=scratch")
-
-  vim.fn.termopen(cmd)
+  run(cmd)
 end
 
 function M.debug()
   cmd = config.debug[vim.bo.filetype]
+  run(cmd)
+end
 
+function run(cmd)
   if not cmd then
     vim.cmd("echohl ErrorMsg | echo 'Error: Invalid command' | echohl None")
     return
@@ -58,6 +49,7 @@ function M.debug()
   vim.cmd(":tabnew | setlocal buftype=nofile bufhidden=wipe nobuflisted filetype=scratch")
 
   vim.fn.termopen(cmd)
+  vim.cmd(":startinsert!")
 end
 
 return M
