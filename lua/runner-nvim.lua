@@ -36,6 +36,11 @@ function M.debug()
   run(cmd)
 end
 
+function M.profile()
+  cmd = config.profile[vim.bo.filetype]
+  run(cmd)
+end
+
 function run(cmd)
   if not cmd then
     vim.cmd("echohl ErrorMsg | echo 'Error: Invalid command' | echohl None")
