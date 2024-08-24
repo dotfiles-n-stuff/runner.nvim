@@ -51,7 +51,7 @@ function run(cmd)
 
   cmd = substitute(cmd)
 
-  vim.cmd(":enew | setlocal buftype=nofile bufhidden=wipe nobuflisted filetype=scratch")
+  vim.cmd(":enew | setlocal buftype=nofile bufhidden=wipe filetype=scratch")
 
   vim.fn.termopen(cmd)
   vim.cmd(":startinsert!")
