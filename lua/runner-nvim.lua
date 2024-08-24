@@ -28,20 +28,20 @@ end
 
 function M.launch()
   cmd = config.cmds[vim.bo.filetype]
-  run(cmd)
+  run(cmd, "*launch*")
 end
 
 function M.debug()
   cmd = config.debug[vim.bo.filetype]
-  run(cmd)
+  run(cmd, "*debug*")
 end
 
 function M.profile()
   cmd = config.profile[vim.bo.filetype]
-  run(cmd)
+  run(cmd, "*profile*")
 end
 
-function run(cmd)
+function run(cmd, console_name)
   if not cmd then
     vim.cmd("echohl ErrorMsg | echo 'Error: Invalid command' | echohl None")
     return
@@ -54,6 +54,7 @@ function run(cmd)
   vim.cmd(":enew | setlocal buftype=nofile bufhidden=wipe filetype=scratch")
 
   vim.fn.termopen(cmd)
+  vim.api.nvim_buf_set_name(0, console_name)
   vim.cmd(":startinsert!")
 end
 
