@@ -27,21 +27,21 @@ local function substitute(cmd)
 end
 
 function M.launch()
-  cmd = config.cmds[vim.bo.filetype]
-  run(cmd, "*launch*")
+  local cmd = config.cmds[vim.bo.filetype]
+  M.run(cmd, "*launch*")
 end
 
 function M.debug()
-  cmd = config.debug[vim.bo.filetype]
-  run(cmd, "*debug*")
+  local cmd = config.debug[vim.bo.filetype]
+  M.run(cmd, "*debug*")
 end
 
 function M.profile()
-  cmd = config.profile[vim.bo.filetype]
-  run(cmd, "*profile*")
+  local cmd = config.profile[vim.bo.filetype]
+  M.run(cmd, "*profile*")
 end
 
-function run(cmd, console_name)
+function M.run(cmd, console_name)
   if not cmd then
     vim.cmd("echohl ErrorMsg | echo 'Error: Invalid command' | echohl None")
     return
