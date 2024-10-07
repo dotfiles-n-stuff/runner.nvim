@@ -3,6 +3,8 @@ local M = {}
 local config = {
   cmds = {},
   debug = {},
+  repl = {},
+  profile = {},
   behavior = {
     autosave = false
   }
@@ -29,6 +31,11 @@ end
 function M.launch()
   local cmd = config.cmds[vim.bo.filetype]
   M.run(cmd, "*launch*")
+end
+
+function M.repl()
+  local cmd = config.repl[vim.bo.filetype]
+  M.run(cmd, "*repl*")
 end
 
 function M.debug()
