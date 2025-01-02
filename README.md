@@ -9,7 +9,7 @@ Lazy:
 
 ## Example Lua Config:
 ```lua
-require('runner.nvim').setup{
+require('runner').setup{
   cmds = {
     perl = "perl %",
     fish = "fish %",
