@@ -9,16 +9,25 @@ Lazy:
 
 ## Example Lua Config:
 ```lua
-require('runner').setup{
+require "runner".setup {
   cmds = {
-    perl = "perl %",
     fish = "fish %",
+    lua  = "lua %",
+    ruby = "ruby -w %",
     sh   = "sh %"
+  },
+  profile = {
+    ruby = "ruby-prof %"
+  },
+  repl = {
+  },
+  debug = {
+    ruby = "rdbg %"
   },
   behavior = {
     autosave = true
   }
-}
+} 
 ```
 
 ## Usage:
