@@ -1,6 +1,7 @@
 local M = {}
 
 local config = {
+  build = {},
   cmds = {},
   debug = {},
   repl = {},
@@ -48,6 +49,11 @@ function M.profile()
   M.run(cmd, "*profile*")
 end
 
+function M.build()
+  local cmd = config.build[vim.bo.filetype]
+  M.run(cmd, "*build*")
+end
+
 function M.run(cmd, console_name)
   if not cmd then
     vim.cmd("echohl ErrorMsg | echo 'Error: Invalid command' | echohl None")
@@ -60,7 +66,7 @@ function M.run(cmd, console_name)
 
   vim.cmd(":enew | setlocal buftype=nofile bufhidden=wipe filetype=scratch")
 
-  vim.fn.termopen(cmd)
+  vim.fn.jobstart(cmd, { term = true })
   vim.api.nvim_buf_set_name(0, console_name)
   vim.cmd(":startinsert!")
 end
